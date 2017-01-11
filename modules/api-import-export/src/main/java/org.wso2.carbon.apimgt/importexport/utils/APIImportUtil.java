@@ -362,11 +362,10 @@ public final class APIImportUtil {
         try {
             VelocityContext context = new VelocityContext();
             for (Entry<String, String> entry : extraProperties.entrySet()) {
-                context.put(StringUtils.substringAfter(entry.getKey(), APIImportExportConstants.WSO_HEADER_PREFIX.toLowerCase()),
-                        entry.getValue());
+                context.put(StringUtils.substringAfter(entry.getKey(), TemplateManager.WSO_HEADER_PREFIX.toLowerCase()), entry.getValue());
             }
             TemplateManager templateManager = (TemplateManager) Class
-                    .forName(extraProperties.get(APIImportExportConstants.WSO_HEADER_TEMPLATE_MANAGER.toLowerCase())).newInstance();
+                    .forName(extraProperties.get(TemplateManager.WSO_HEADER_TEMPLATE_MANAGER.toLowerCase())).newInstance();
             for (Entry<String, Object> entry : templateManager.getProperties(extraProperties).entrySet()) {
                 context.put(entry.getKey(), entry.getValue());
             }
